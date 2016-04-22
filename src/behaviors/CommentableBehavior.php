@@ -6,7 +6,7 @@
  * Time: 16:32
  */
 
-namespace rocketfirm\comments;
+namespace rocketfirm\comments\behaviors;
 
 
 use rocketfirm\comments\models\Comment;
