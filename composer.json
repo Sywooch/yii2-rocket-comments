@@ -3,8 +3,12 @@
     "description": "Rocket Firm comments system for yii2 framework",
     "type": "yii2-extension",
     "require": {
-        "yiisoft/yii2": "^2.0.0",
+        "yiisoft/yii2": "~2.0.0",
         "creocoder/yii2-nested-sets": "^0.9.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "phpunit/dbunit": "~1.0"
     },
     "license": "MIT",
     "authors": [
