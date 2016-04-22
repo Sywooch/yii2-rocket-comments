@@ -85,11 +85,11 @@ class Comment extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \common\models\queries\CommentQuery the active query used by this AR class.
+     * @return \rocketfirm\comments\models\queries\CommentQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \common\models\queries\CommentQuery(get_called_class());
+        return new \rocketfirm\comments\models\queries\CommentQuery(get_called_class());
     }
 
 
