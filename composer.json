@@ -16,5 +16,10 @@
             "name": "naffiq",
             "email": "galymzhan@rocketfirm.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "creocoder\\nestedsets\\": "src"
+        }
+    }
 }
