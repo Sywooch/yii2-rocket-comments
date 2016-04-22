@@ -19,7 +19,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "creocoder\\nestedsets\\": "src"
+            "rocketfirm\\comments\\actions": "src/actions",
+            "rocketfirm\\comments\\behaviors": "src/behaviors",
+            "rocketfirm\\comments\\models": "src/models"
         }
     }
 }
