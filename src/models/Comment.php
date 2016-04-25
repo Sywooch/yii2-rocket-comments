@@ -162,9 +162,9 @@ class Comment extends \yii\db\ActiveRecord
         ]);
 
         if ($parentComment === false) {
-            $comment->makeRoot();
+            return $comment->makeRoot();
         } else {
-            $comment->prependTo($parentComment);
+            return $comment->prependTo($parentComment);
         }
     }
 }

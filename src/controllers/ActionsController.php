@@ -1,6 +1,8 @@
 <?php
 
 namespace rocketfirm\comments\controllers;
+use rocketfirm\comments\models\CommentForm;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
@@ -18,10 +20,6 @@ class ActionsController extends Controller
 
     public function actionPost()
     {
-        if (!$this->class) {
-            throw new \yii\base\ErrorException('Commentable class not specified');
-        }
-
         $request = \Yii::$app->request;
 
         if ($request->isPost) {

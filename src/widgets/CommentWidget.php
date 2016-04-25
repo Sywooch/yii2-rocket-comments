@@ -40,7 +40,7 @@ class CommentWidget extends Widget
                 'model' => $this->model,
                 'comments' => $this->comments,
                 'loginUrl' => $this->loginUrl,
-                'form' => $this->formModel
+                'formModel' => $this->formModel
             ]
         );
     }

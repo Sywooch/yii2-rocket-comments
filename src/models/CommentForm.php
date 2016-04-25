@@ -49,6 +49,6 @@ class CommentForm extends Model
             );
         }
 
-        return $object::comment($this->text, $this->parentCommentId);
+        return $object->comment($this->text, $this->parentCommentId);
     }
 }

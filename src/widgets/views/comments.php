@@ -5,6 +5,7 @@
  * @var \yii\db\ActiveRecord $model
  * @var \rocketfirm\comments\models\CommentForm $formModel
  */
+
 ?>
 <div class="reviews">
     <a id="comments"></a>
@@ -27,9 +28,15 @@
     <div class="reviews-comment-section flex-760">
 
         <?php $form = \yii\widgets\ActiveForm::begin([
-            'action' => ['comments/post'],
+            'action' => ['comments/actions/post'],
             'options' => [
-                'style' => 'width: 100%;'
+                'style' => 'width: 100%;',
+            ],
+            'fieldConfig' => [
+                'template' => '{input}',
+                'options' => [
+                    'style' => 'width: 100%',
+                ]
             ]
         ]) ?>
         <?= $form->field($formModel, 'commentableModel')->hiddenInput([
@@ -73,6 +80,12 @@
                     </div>
                 </div>
             <?php endforeach ?>
+            
+            <?php if (empty($comments)) : ?>
+                <div class="alert alert-info">
+                    <?= Yii::t('frontend', 'Комментариев пока нет. Станьте первым, оставив свой!') ?>
+                </div>
+            <?php endif; ?>
 
         </div>
     </div>
