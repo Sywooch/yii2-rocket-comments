@@ -1,10 +1,11 @@
 <?php
 
 namespace rocketfirm\comments\actions;
-use common\models\base\Comment;
+use rocketfirm\comments\models\CommentForm;
 use yii\base\Action;
 use yii\base\ErrorException;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 
 /**
  * Created by PhpStorm.
@@ -19,13 +20,42 @@ class CommentAction extends Action
 
     /**
      * @param int $modelId
-     * @param string $text
-     * @param bool|int $parentCommentId
-     * @param bool|string $returnUrl
-     * @param bool|int $authorId
      */
-    public function run()
+    public function run($modelId)
     {
+        if (!$this->class) {
+            throw new \yii\base\ErrorException('Commentable class not specified');
+        }
 
+        $request = \Yii::$app->request;
+
+        if ($request->isPost) {
+            $className = $this->class;
+
+            /**
+             * @var $object ActiveRecord
+             */
+            $object = $className::findOne([$this->idField => $modelId]);
+
+            if (!$object->getBehavior('commentable')) {
+                throw new \yii\base\ErrorException(
+                    'Commentable behavior is not attached to class ' . $className .
+                    ' (behavior key has to be defined as `commentable`)'
+                );
+            }
+
+            $comment = new CommentForm();
+
+            if ($comment->load($request->post()) && $comment->save($object))
+            {
+                if ($comment->returnUrl) {
+                    return \Yii::$app->controller->redirect($comment->returnUrl);
+                } else {
+                    return \Yii::$app->controller->redirect(Url::previous());
+                }
+            }
+        } else {
+            throw new \yii\base\ErrorException('Only POST requests are allowed');
+        }
     }
 }

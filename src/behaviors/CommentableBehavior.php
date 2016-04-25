@@ -30,5 +30,4 @@ class CommentableBehavior extends Behavior
         return Comment::newComment($this->owner, $text, $parentComment, false, $this->idField);
     }
 
-
 }
