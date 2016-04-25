@@ -15,15 +15,17 @@ class CommentWidget extends Widget
 {
     public $model;
 
-    public $form;
+    public $formModel;
 
     public $comments;
+    public $loginUrl = ['site/login'];
+    public $commentUrl;
 
     public function init()
     {
         parent::init();
 
-        $this->form = new CommentForm();
+        $this->formModel = new CommentForm();
         if (Comment::checkModel($this->model)) {
             $this->comments = $this->model->getComments();
         }
@@ -36,7 +38,9 @@ class CommentWidget extends Widget
         return $this->render(
             'comments', [
                 'model' => $this->model,
-                'comments' => $this->comments
+                'comments' => $this->comments,
+                'loginUrl' => $this->loginUrl,
+                'form' => $this->formModel
             ]
         );
     }

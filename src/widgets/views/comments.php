@@ -1,17 +1,23 @@
 <?php
 /**
- * @var $comments \rocketfirm\comments\models\Comment[]
+ * @var \rocketfirm\comments\models\Comment[] $comments
+ * @var string $loginUrl
+ * @var \yii\db\ActiveRecord $model
+ * @var \rocketfirm\comments\models\CommentForm $formModel
  */
 ?>
 <div class="reviews">
     <a id="comments"></a>
     <h3 class="content-title"><?= Yii::t('frontend', 'Отзывы читателей') ?> <span>(<?= $model->getCommentsCount() ?>)</span></h3>
-    <a class="reviews-login" href="">
-        <?= Yii::t('frontend', 'Войти') ?>
-        <svg class="icon icon--down">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-down"></use>
-        </svg>
-    </a>
+    <?php if (\Yii::$app->user->isGuest) : ?>
+        <a class="reviews-login" href="<?= \yii\helpers\Url::to($loginUrl) ?>">
+            <?= Yii::t('frontend', 'Войти') ?>
+            <svg class="icon icon--down">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-down"></use>
+            </svg>
+        </a>
+    <?php endif; ?>
+
     <?php /*
      <select class="selectpicker" title="Сортировать по">
      <option>дате</option>
@@ -20,14 +26,24 @@
  */ ?>
     <div class="reviews-comment-section flex-760">
 
-        <?php \yii\widgets\ActiveForm::begin([
+        <?php $form = \yii\widgets\ActiveForm::begin([
+            'action' => ['comments/post'],
             'options' => [
                 'style' => 'width: 100%;'
             ]
         ]) ?>
+        <?= $form->field($formModel, 'commentableModel')->hiddenInput([
+            'value' => $model::className()
+        ]) ?>
+        <?= $form->field($formModel, 'modelId')->hiddenInput([
+            'value' => $model->id,
+        ]) ?>
         <div class="reviews-comment-row">
             <div class="reviews-avatar"></div>
-            <input class="reviews-comment-input" type="text" placeholder="Ваш комментарий...">
+            <?= $form->field($formModel, 'text')->input('text', [
+                'class' => 'reviews-comment-input',
+                'placeholder' => \Yii::t('rf-comments', 'Ваш комментарий')
+            ]) ?>
         </div>
         <?php \yii\widgets\ActiveForm::end() ?>
 

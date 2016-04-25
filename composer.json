@@ -19,7 +19,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "rocketfirm\\comments\\actions\\": "src/actions",
+            "rocketfirm\\comments\\": "src",
+            "rocketfirm\\comments\\controllers\\": "src/controllers",
             "rocketfirm\\comments\\behaviors\\": "src/behaviors",
             "rocketfirm\\comments\\models\\": "src/models",
             "rocketfirm\\comments\\widgets\\": "src/widgets"
