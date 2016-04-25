@@ -37,4 +37,9 @@ class ActionsController extends Controller
             throw new \yii\base\ErrorException('Only POST requests are allowed');
         }
     }
+
+    public function actionRate()
+    {
+        
+    }
 }
