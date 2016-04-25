@@ -34,9 +34,18 @@ class Comment extends \yii\db\ActiveRecord
         return [
             'tree' => [
                 'class' => NestedSetsBehavior::className(),
+                'treeAttribute' => 'tree'
             ],
         ];
     }
+
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_ALL,
+        ];
+    }
+
 
     /**
      * @inheritdoc
@@ -52,7 +61,7 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tree', 'lft', 'rgt', 'depth', 'user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
+            [['user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
             [['tree', 'lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active'], 'integer'],
             [['text', 'admin_text'], 'string'],
             [['created_at'], 'safe'],
@@ -162,15 +171,12 @@ class Comment extends \yii\db\ActiveRecord
             'admin_text' => '',
         ]);
 
-        if ($parentComment === false) {
+        if (!$parentComment) {
             $result = $comment->makeRoot();
         } else {
             $result = $comment->prependTo($parentComment);
         }
-        if (!$result) {
-            print_r($comment->getErrors());
-            die;
-        }
+
         return $result;
     }
 }
