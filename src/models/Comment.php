@@ -52,7 +52,7 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tree', 'lft', 'rgt', 'depth', 'user_id', 'model', 'model_id', 'text', 'admin_text', 'is_active'], 'required'],
+            [['tree', 'lft', 'rgt', 'depth', 'user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
             [['tree', 'lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active'], 'integer'],
             [['text', 'admin_text'], 'string'],
             [['created_at'], 'safe'],
@@ -159,12 +159,18 @@ class Comment extends \yii\db\ActiveRecord
             'model' => $model,
             'model_id' => $modelId,
             'is_active' => self::$defaultActiveState,
+            'admin_text' => '',
         ]);
 
         if ($parentComment === false) {
-            return $comment->makeRoot();
+            $result = $comment->makeRoot();
         } else {
-            return $comment->prependTo($parentComment);
+            $result = $comment->prependTo($parentComment);
         }
+        if (!$result) {
+            print_r($comment->getErrors());
+            die;
+        }
+        return $result;
     }
 }

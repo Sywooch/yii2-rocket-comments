@@ -19,7 +19,7 @@ class m160414_110135_create_comments extends Migration
             'rating' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0',
             'text' => Schema::TYPE_TEXT . ' NOT NULL',
             'created_at' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT CURRENT_TIMESTAMP',
-            'admin_text' => Schema::TYPE_TEXT . ' NOT NULL',
+            'admin_text' => Schema::TYPE_TEXT,
             'admin_rating' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT 0',
             'is_active' => Schema::TYPE_BOOLEAN . ' NOT NULL'
         ]);
