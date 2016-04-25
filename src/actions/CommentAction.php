@@ -26,5 +26,6 @@ class CommentAction extends Action
      */
     public function run()
     {
+
     }
 }

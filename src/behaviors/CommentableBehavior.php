@@ -8,7 +8,6 @@
 
 namespace rocketfirm\comments\behaviors;
 
-
 use rocketfirm\comments\models\Comment;
 use yii\base\Behavior;
 
