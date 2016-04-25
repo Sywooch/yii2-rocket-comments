@@ -53,7 +53,8 @@
             <div class="reviews-avatar"></div>
             <?= $form->field($formModel, 'text')->input('text', [
                 'class' => 'reviews-comment-input',
-                'placeholder' => \Yii::t('rf-comments', 'Ваш комментарий')
+                'placeholder' => \Yii::t('rf-comments', 'Ваш комментарий'),
+                'style' => 'width: 100%;',
             ]) ?>
         </div>
         <?php \yii\widgets\ActiveForm::end() ?>
