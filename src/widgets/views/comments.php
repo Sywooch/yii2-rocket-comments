@@ -79,9 +79,12 @@
                         <?= $comment->text ?>
                     </div>
                     <div class="reviews-comment-actions">
-                        <a class="reviews-comment-link inline-block" href="#"><?= Yii::t('frontend', 'Ответить') ?></a>
-                        <a class="reviews-comment-link inline-block"
-                           href="#"><?= Yii::t('frontend', 'Поделиться') ?></a>
+                        <a class="reviews-comment-link inline-block" href="#">
+                            <?= Yii::t('frontend', 'Ответить') ?>
+                        </a>
+                        <a class="reviews-comment-link inline-block" href="#">
+                            <?= Yii::t('frontend', 'Поделиться') ?>
+                        </a>
                     </div>
                 </div>
             </div>
