@@ -42,6 +42,9 @@
         <?= $form->field($formModel, 'commentableModel')->hiddenInput([
             'value' => $model::className()
         ]) ?>
+        <?= $form->field($formModel, 'returnUrl')->hiddenInput([
+            'value' => \yii\helpers\Url::current()
+        ]) ?>
         <?= $form->field($formModel, 'modelId')->hiddenInput([
             'value' => $model->id,
         ]) ?>
