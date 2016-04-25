@@ -15,7 +15,7 @@ use yii\helpers\Url;
  */
 class CommentAction extends Action
 {
-    public $class;
+    public $commentModel;
     public $idField = 'id';
 
     /**
@@ -30,7 +30,7 @@ class CommentAction extends Action
         $request = \Yii::$app->request;
 
         if ($request->isPost) {
-            $className = $this->class;
+            $className = $this->commentModel;
 
             /**
              * @var $object ActiveRecord
