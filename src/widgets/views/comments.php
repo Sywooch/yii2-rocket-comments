@@ -64,7 +64,9 @@
                 <div class="reviews-avatar"></div>
                 <div class="reviews-comment-block">
                     <div class="reviews-comment-info">
-                        <div class="reviews-comment-name inline-block"></div>
+                        <div class="reviews-comment-name inline-block">
+                            <?= \Yii::$app->user->getIdentity()->className() ?>
+                        </div>
                         <div class="reviews-comment-time inline-block">12 часов назад</div>
                         <div class="reviews-likes inline-block">
                             <a class="reviews-likes-less" href="#">
