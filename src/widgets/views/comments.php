@@ -9,7 +9,8 @@
 ?>
 <div class="reviews">
     <a id="comments"></a>
-    <h3 class="content-title"><?= Yii::t('frontend', 'Отзывы читателей') ?> <span>(<?= $model->getCommentsCount() ?>)</span></h3>
+    <h3 class="content-title"><?= Yii::t('frontend', 'Отзывы читателей') ?> <span>(<?= $model->getCommentsCount() ?>
+            )</span></h3>
     <?php if (\Yii::$app->user->isGuest) : ?>
         <a class="reviews-login" href="<?= \yii\helpers\Url::to($loginUrl) ?>">
             <?= Yii::t('frontend', 'Войти') ?>
@@ -56,9 +57,9 @@
             ]) ?>
         </div>
         <?php \yii\widgets\ActiveForm::end() ?>
+        <?php foreach ($comments as $comment): ?>
 
-        <div class="reviews-comment-row">
-            <?php foreach($comments as $comment): ?>
+            <div class="reviews-comment-row">
                 <div class="reviews-avatar"></div>
                 <div class="reviews-comment-block">
                     <div class="reviews-comment-info">
@@ -79,17 +80,17 @@
                     </div>
                     <div class="reviews-comment-actions">
                         <a class="reviews-comment-link inline-block" href="#"><?= Yii::t('frontend', 'Ответить') ?></a>
-                        <a class="reviews-comment-link inline-block" href="#"><?= Yii::t('frontend', 'Поделиться') ?></a>
+                        <a class="reviews-comment-link inline-block"
+                           href="#"><?= Yii::t('frontend', 'Поделиться') ?></a>
                     </div>
                 </div>
-            <?php endforeach ?>
-            
-            <?php if (empty($comments)) : ?>
-                <div class="alert alert-info">
-                    <?= Yii::t('frontend', 'Комментариев пока нет. Станьте первым, оставив свой!') ?>
-                </div>
-            <?php endif; ?>
+            </div>
+        <?php endforeach ?>
 
-        </div>
+        <?php if (empty($comments)) : ?>
+            <div class="alert alert-info">
+                <?= Yii::t('frontend', 'Комментариев пока нет. Станьте первым, оставив свой!') ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
