@@ -100,9 +100,11 @@ class Comment extends \yii\db\ActiveRecord
      */
     public static function checkModel($commentableModel)
     {
-        if (!isset($commentableModel->behaviors['commentable'])) {
+        if ( !isset($commentableModel->behaviors['commentable']) ) {
             throw new ErrorException('В вашу модель не подключено поведение commentable (или не обозначен ключ)');
         }
+
+        return true;
     }
 
     /**

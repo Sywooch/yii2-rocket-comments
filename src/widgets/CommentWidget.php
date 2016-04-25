@@ -2,6 +2,9 @@
 namespace rocketfirm\comments\widgets;
 use yii\base\Widget;
 
+use rocketfirm\comments\models\Comment;
+use rocketfirm\comments\models\CommentForm;
+
 /**
  * Created by PhpStorm.
  * User: rocketman
@@ -14,12 +17,16 @@ class CommentWidget extends Widget
 
     public $form;
 
+    public $comments;
+
     public function init()
     {
         parent::init();
 
-//        $this->form = \CommentForm::
-//        Comment::checkModel($this->model);
+        $this->form = new CommentForm();
+        if (Comment::checkModel($this->model)) {
+            $this->comments = $this->model->getComments();
+        }
 
         // TODO: get comments and display
     }
@@ -28,7 +35,8 @@ class CommentWidget extends Widget
     {
         return $this->render(
             'comments', [
-                'model' => $this->model
+                'model' => $this->model,
+                'comments' => $this->comments
             ]
         );
     }

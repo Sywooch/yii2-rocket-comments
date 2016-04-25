@@ -30,4 +30,14 @@ class CommentableBehavior extends Behavior
         return Comment::newComment($this->owner, $text, $parentComment, false, $this->idField);
     }
 
+
+    public function getComments()
+    {
+        return Comment::find()
+            ->where([
+                'model' => $this->owner->className(),
+                'model_id' => $this->owner->id,
+                'is_active' => 1,
+            ])->roots()->all();
+    }
 }
