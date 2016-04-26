@@ -239,9 +239,33 @@ class Comment extends \yii\db\ActiveRecord
         }
     }
 
+    /**
+     * Возвращает комментируемую модель
+     *
+     * @return ActiveRecord
+     */
     public function getModel()
     {
         $modelClass = $this->model;
         return $modelClass::findOne(['id' => $this->model_id]);
+    }
+
+    /**
+     * Поиск обсуждаемых публикаций/моделей
+     *
+     * @param bool|string|ActiveRecord $model
+     */
+    public function getPopular($model = false)
+    {
+        $query = self::find()
+            ->where(['is_active' => 1]);
+        if ($model) {
+            if (is_object($model)) {
+                $model = $model->className();
+            }
+            $query->where(['model' => $model]);
+        }
+
+        $query->groupBy(['model', 'model_id'])->all();
     }
 }
