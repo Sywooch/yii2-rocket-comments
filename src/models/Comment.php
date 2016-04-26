@@ -255,7 +255,7 @@ class Comment extends \yii\db\ActiveRecord
      *
      * @param bool|string|ActiveRecord $model
      */
-    public function getPopular($model = false)
+    public static function getPopular($model = false)
     {
         $query = self::find()
             ->where(['is_active' => 1]);
