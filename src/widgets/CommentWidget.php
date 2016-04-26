@@ -35,17 +35,21 @@ class CommentWidget extends Widget
 
     }
 
+    public function params()
+    {
+        return [
+            'model' => $this->model,
+            'comments' => $this->comments,
+            'commentUrl' => $this->commentUrl,
+            'loginUrl' => $this->loginUrl,
+            'formModel' => $this->formModel,
+            'usernameField' => $this->usernameField,
+            'avatarField' => $this->avatarField
+        ];
+    }
+
     public function run()
     {
-        return $this->render(
-            'comments', [
-                'model' => $this->model,
-                'comments' => $this->comments,
-                'loginUrl' => $this->loginUrl,
-                'formModel' => $this->formModel,
-                'usernameField' => $this->usernameField,
-                'avatarField' => $this->avatarField
-            ]
-        );
+        return $this->render('comments', $this->params());
     }
 }

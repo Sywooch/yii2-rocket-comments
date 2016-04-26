@@ -2,6 +2,7 @@
 
 namespace rocketfirm\comments\controllers;
 use rocketfirm\comments\models\CommentForm;
+use rocketfirm\comments\widgets\AjaxCommentWidget;
 use yii\helpers\Url;
 use yii\web\Controller;
 
@@ -20,7 +21,16 @@ class ActionsController extends Controller
 
     public function actionGet()
     {
+        $request = \Yii::$app->request;
 
+        if ($request->isPost) {
+            if (!isset($request->post()['model'])) {
+                throw new \yii\base\ErrorException('Model attribute missing');
+            }
+
+        } else {
+            throw new \yii\base\ErrorException('Only POST requests are allowed');
+        }
     }
 
     public function actionPost()

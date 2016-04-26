@@ -6,6 +6,7 @@ use creocoder\nestedsets\NestedSetsBehavior;
 use Yii;
 use yii\base\ErrorException;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 use yii\web\IdentityInterface;
 
 /**
@@ -106,9 +107,13 @@ class Comment extends \yii\db\ActiveRecord
 
 
     /**
+     * Checks if this model has CommentableBehavior
+     *
      * @param ActiveRecord $commentableModel
      *
      * @throws ErrorException
+     *
+     * @return boolean
      */
     public static function checkModel($commentableModel)
     {
@@ -217,5 +222,26 @@ class Comment extends \yii\db\ActiveRecord
         } else {
             return $this->getUser()->$field;
         }
+    }
+
+    /**
+     * Получает имя пользователя для отображения в комментариях
+     *
+     * @param string $field
+     * @return mixed
+     */
+    public function getUserImage($field = 'image')
+    {
+        if (is_callable($field)) {
+            return $field($this->getUser());
+        } else {
+            return Url::to($this->getUser()->$field);
+        }
+    }
+
+    public function getModel()
+    {
+        $modelClass = $this->model;
+        return $modelClass::findOne(['id' => $this->model_id]);
     }
 }

@@ -63,46 +63,9 @@
             <?php \yii\widgets\ActiveForm::end() ?>
         <?php endif; ?>
 
-        <?php foreach ($comments as $comment): ?>
+        <div id="rocket-comments">
 
-            <div class="reviews-comment-row">
-                <div class="reviews-avatar">
-                    <img src="<?= $comment->getAvatar($avatarField) ?>" alt="" width="100%">
-                </div>
-                <div class="reviews-comment-block">
-                    <div class="reviews-comment-info">
-                        <div class="reviews-comment-name inline-block">
-                            <?= $comment->getUsername($usernameField) ?>
-                        </div>
-                        <div class="reviews-comment-time inline-block">
-                            <?= \naffiq\helpers\DateHelper::getTimeSince($comment->created_at) ?>
-                        </div>
-                        <div class="reviews-likes inline-block">
-                            <a class="reviews-likes-less" href="#">
-                                <i></i>
-                            </a>
-                            <div class="reviews-likes-num reviews-likes-num--plus"><?= $comment->rating ?></div>
-                            <a class="reviews-likes-more" href="#">
-                                <i></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="reviews-comment-text plain-text">
-                        <?= $comment->text ?>
-                    </div>
-                    <div class="reviews-comment-actions">
-                        <a class="reviews-comment-link inline-block" data-comment-id="" href="#">
-                            <?= Yii::t('frontend', 'Ответить') ?>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach ?>
+        </div>
 
-        <?php if (empty($comments)) : ?>
-            <div class="alert alert-info">
-                <?= Yii::t('frontend', 'Комментариев пока нет. Станьте первым, оставив свой!') ?>
-            </div>
-        <?php endif; ?>
     </div>
 </div>
