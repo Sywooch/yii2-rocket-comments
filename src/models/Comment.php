@@ -30,6 +30,7 @@ use yii\web\IdentityInterface;
 class Comment extends \yii\db\ActiveRecord
 {
     private $_user;
+    private $_model;
 
     public static $guestCommentsAllowed = false;
     public static $defaultActiveState = true;
@@ -246,8 +247,11 @@ class Comment extends \yii\db\ActiveRecord
      */
     public function getModel()
     {
-        $modelClass = $this->model;
-        return $modelClass::findOne(['id' => $this->model_id]);
+        if (!$this->_model) {
+            $modelClass = $this->model;
+            $this->_model = $modelClass::findOne(['id' => $this->model_id]);
+        }
+        return $this->_model;
     }
 
     /**
@@ -255,7 +259,7 @@ class Comment extends \yii\db\ActiveRecord
      *
      * @param bool|string|ActiveRecord $model
      */
-    public static function getPopular($model = false)
+    public static function getPopular($limit = 5, $model = false)
     {
         $query = self::find()
             ->where(['is_active' => 1]);
