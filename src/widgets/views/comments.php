@@ -9,8 +9,12 @@
 ?>
 <div class="reviews">
     <a id="comments"></a>
-    <h3 class="content-title"><?= Yii::t('frontend', 'Отзывы читателей') ?> <span>(<?= $model->getCommentsCount() ?>
-            )</span></h3>
+    <h3 class="content-title">
+        <?= Yii::t('frontend', 'Отзывы читателей') ?>
+        <span>
+            (<?= $model->getCommentsCount() ?>)
+        </span>
+    </h3>
     <?php if (\Yii::$app->user->isGuest) : ?>
         <a class="reviews-login" href="<?= \yii\helpers\Url::to($loginUrl) ?>">
             <?= Yii::t('frontend', 'Войти') ?>
@@ -20,12 +24,11 @@
         </a>
     <?php endif; ?>
 
-    <?php /*
      <select class="selectpicker" title="Сортировать по">
-     <option>дате</option>
-     <option>рейтингу</option>
+         <option><?= Yii::t('frontend', 'дате') ?></option>
+         <option><?= Yii::t('frontend', 'рейтингу') ?></option>
      </select>
- */ ?>
+
     <div class="reviews-comment-section flex-760">
 
         <?php $form = \yii\widgets\ActiveForm::begin([
@@ -65,9 +68,11 @@
                 <div class="reviews-comment-block">
                     <div class="reviews-comment-info">
                         <div class="reviews-comment-name inline-block">
-                            <?= \Yii::$app->user->getIdentity()->className() ?>
+                            <?= $comment->getUsername($usernameField) ?>
                         </div>
-                        <div class="reviews-comment-time inline-block">12 часов назад</div>
+                        <div class="reviews-comment-time inline-block">
+                            <?= \naffiq\helpers\DateHelper::getTimeSince($comment->created_at) ?>
+                        </div>
                         <div class="reviews-likes inline-block">
                             <a class="reviews-likes-less" href="#">
                                 <i></i>

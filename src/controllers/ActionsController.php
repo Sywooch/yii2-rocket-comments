@@ -18,9 +18,16 @@ class ActionsController extends Controller
         parent::init();
     }
 
+    public function actionGet()
+    {
+
+    }
+
     public function actionPost()
     {
         $request = \Yii::$app->request;
+
+        $redirectUrl = \Yii::$app->controller->redirect(Url::previous());
 
         if ($request->isPost) {
             $comment = new CommentForm();
@@ -28,18 +35,17 @@ class ActionsController extends Controller
             if ($comment->load($request->post()) && $comment->save())
             {
                 if ($comment->returnUrl) {
-                    return \Yii::$app->controller->redirect($comment->returnUrl);
-                } else {
-                    return \Yii::$app->controller->redirect(Url::previous());
+                    $redirectUrl = \Yii::$app->controller->redirect($comment->returnUrl);
                 }
             }
         } else {
             throw new \yii\base\ErrorException('Only POST requests are allowed');
         }
+        return $redirectUrl;
     }
 
     public function actionRate()
     {
-        
+
     }
 }

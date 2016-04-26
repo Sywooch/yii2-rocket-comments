@@ -19,7 +19,10 @@ class CommentWidget extends Widget
 
     public $comments;
     public $loginUrl = ['site/login'];
-    public $commentUrl;
+    public $commentUrl = ['comments/actions/post'];
+
+    public $usernameField = 'username';
+    public $avatarField = 'image';
 
     public function init()
     {
@@ -30,7 +33,6 @@ class CommentWidget extends Widget
             $this->comments = $this->model->getComments();
         }
 
-        // TODO: get comments and display
     }
 
     public function run()
@@ -40,7 +42,9 @@ class CommentWidget extends Widget
                 'model' => $this->model,
                 'comments' => $this->comments,
                 'loginUrl' => $this->loginUrl,
-                'formModel' => $this->formModel
+                'formModel' => $this->formModel,
+                'usernameField' => $this->usernameField,
+                'avatarField' => $this->avatarField
             ]
         );
     }

@@ -12,4 +12,7 @@ namespace rocketfirm\comments;
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'rocketfirm\comments\controllers';
+
+    public $usernameField = 'username';
+    public $avatarField = 'image';
 }

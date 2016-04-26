@@ -6,6 +6,7 @@ use creocoder\nestedsets\NestedSetsBehavior;
 use Yii;
 use yii\base\ErrorException;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "rf_comments".
@@ -27,6 +28,8 @@ use yii\db\ActiveRecord;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+    private $_user;
+
     public static $guestCommentsAllowed = false;
     public static $defaultActiveState = true;
 
@@ -178,5 +181,41 @@ class Comment extends \yii\db\ActiveRecord
         }
 
         return $result;
+    }
+
+    /**
+     * Получает пользователя из заданного IdentityInterface или из интерфейса приложения
+     *
+     * @param IdentityInterface|bool $identity
+     * @return ActiveRecord
+     */
+    public function getUser($identity = false)
+    {
+        if (!$this->_user) {
+
+            if (!$identity) {
+                $userIdentityClass = \Yii::$app->user->getIdentity()->className();
+            } else {
+                return $identity->className();
+            }
+            $this->_user = $userIdentityClass::findOne(['id' => $this->user_id]);
+        }
+
+        return $this->_user;
+    }
+
+    /**
+     * Получает имя пользователя для отображения в комментариях
+     *
+     * @param string $field
+     * @return mixed
+     */
+    public function getUsername($field = 'username')
+    {
+        if (is_callable($field)) {
+            return $field($this->getUser());
+        } else {
+            return $this->getUser()->$field;
+        }
     }
 }
