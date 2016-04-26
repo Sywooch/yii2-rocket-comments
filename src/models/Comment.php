@@ -258,6 +258,7 @@ class Comment extends \yii\db\ActiveRecord
      * Поиск обсуждаемых публикаций/моделей
      *
      * @param bool|string|ActiveRecord $model
+     * @return Comment[]
      */
     public static function getPopular($limit = 5, $model = false)
     {
@@ -270,6 +271,8 @@ class Comment extends \yii\db\ActiveRecord
             $query->where(['model' => $model]);
         }
 
-        $query->groupBy(['model', 'model_id'])->all();
+        return $query->groupBy(['model', 'model_id'])
+            ->limit($limit)
+            ->all();
     }
 }
