@@ -67,7 +67,7 @@
 
             <div class="reviews-comment-row">
                 <div class="reviews-avatar">
-                    <img src="<?= $comment->getAvatar($avatarField) ?>" alt="" width="100%">
+                    <img src="<?= $comment->getUserImage($avatarField) ?>" alt="" width="100%">
                 </div>
                 <div class="reviews-comment-block">
                     <div class="reviews-comment-info">
