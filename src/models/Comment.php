@@ -146,13 +146,15 @@ class Comment extends \yii\db\ActiveRecord
     /**
      * @param ActiveRecord $commentableModel
      * @param string $text
+     * @param ActiveRecord|bool $parentComment
      * @param integer|bool $userId
+     * @param bool $isActive
      * @param string $idField
      * @throws ErrorException
      *
      * @return bool
      */
-    public static function newComment($commentableModel, $text, $parentComment = false, $userId = false, $idField = 'id')
+    public static function newComment($commentableModel, $text, $parentComment = false, $userId = false, $isActive = true, $idField = 'id')
     {
         self::checkModel($commentableModel);
 
@@ -176,7 +178,7 @@ class Comment extends \yii\db\ActiveRecord
             'text' => $text,
             'model' => $model,
             'model_id' => $modelId,
-            'is_active' => self::$defaultActiveState,
+            'is_active' => $isActive ? $isActive : self::$defaultActiveState,
             'admin_text' => '',
         ]);
 
