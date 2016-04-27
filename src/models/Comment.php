@@ -154,10 +154,11 @@ class Comment extends \yii\db\ActiveRecord
      *
      * @return bool
      */
-    public static function newComment($commentableModel, $text, $parentComment = false, $userId = false, $isActive = true, $idField = 'id')
+    public static function newComment($commentableModel, $params, $parentComment = false)
     {
         self::checkModel($commentableModel);
 
+        $userId = isset($params['user_id']) ? $params['user_id'] : false;
         if ($userId === false && !\Yii::$app->user->isGuest) {
             $userId = \Yii::$app->user->id;
         }
@@ -171,16 +172,15 @@ class Comment extends \yii\db\ActiveRecord
         }
 
         $model = $commentableModel::className();
-        $modelId = $commentableModel->$idField;
+        $modelId = $commentableModel->id;
 
-        $comment = new self([
+        $comment = new self(array_merge($params, [
             'user_id' => $userId,
-            'text' => $text,
             'model' => $model,
             'model_id' => $modelId,
-            'is_active' => $isActive ? $isActive : self::$defaultActiveState,
-            'admin_text' => '',
-        ]);
+            'is_active' => $params['is_active'] ? $params['is_active'] : self::$defaultActiveState,
+            'admin_text' => $params['admin_text'] ? $params['admin_text'] : '',
+        ]));
 
         if (!$parentComment) {
             $result = $comment->makeRoot();

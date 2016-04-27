@@ -16,6 +16,7 @@ class CommentableBehavior extends Behavior
     public $authorIdentity;
     public $idField = 'id';
     public $commentUrl;
+    public $defaultActiveState = true;
 
     public function getCommentsCount()
     {
@@ -28,7 +29,12 @@ class CommentableBehavior extends Behavior
 
     public function comment($text, $parentComment = false)
     {
-        return Comment::newComment($this->owner, $text, $parentComment, false, $this->idField);
+        $params = [
+            'text' => $text,
+            'is_active' => $this->defaultActiveState,
+        ];
+
+        return Comment::newComment($this->owner, $params, $parentComment);
     }
 
     public function getCommentUrl()
