@@ -178,8 +178,8 @@ class Comment extends \yii\db\ActiveRecord
             'user_id' => $userId,
             'model' => $model,
             'model_id' => $modelId,
-            'is_active' => $params['is_active'] ? $params['is_active'] : self::$defaultActiveState,
-            'admin_text' => $params['admin_text'] ? $params['admin_text'] : '',
+            'is_active' => !empty($params['is_active']) ? $params['is_active'] : self::$defaultActiveState,
+            'admin_text' => !empty($params['admin_text']) ? $params['admin_text'] : '',
         ]));
 
         if (!$parentComment) {
