@@ -202,7 +202,7 @@ class Comment extends \yii\db\ActiveRecord
         if (!$this->_user) {
 
             if (!$identity) {
-                $userIdentityClass = \Yii::$app->user->className();
+                $userIdentityClass = \Yii::$app->user->identityClass;
             } else {
                 return $identity->className();
             }
