@@ -167,6 +167,12 @@ class Comment extends \yii\db\ActiveRecord
             throw new ErrorException('Попытка запостить коммент без id пользователя!');
         }
 
+        if (!isset($params['text'])) {
+            throw new ErrorException('Попытка запостить коммент без текста');
+        }
+
+        $params['text'] = strip_tags($params['text']);
+
         if (is_int($parentComment) || is_string($parentComment)) {
             $parentComment = self::findOne(['id' => $parentComment]);
         }
