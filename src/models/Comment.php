@@ -268,7 +268,7 @@ class Comment extends \yii\db\ActiveRecord
      * @param bool|string|ActiveRecord $model
      * @return Comment[]
      */
-    public static function getPopular($limit = 5, $model = false)
+    public static function getPopular($limit = 5, $model = false, $userId = false)
     {
         $query = self::find()
             ->where(['is_active' => 1]);
@@ -277,6 +277,10 @@ class Comment extends \yii\db\ActiveRecord
                 $model = $model->className();
             }
             $query->where(['model' => $model]);
+        }
+
+        if ($userId) {
+            $query->where(['user_id' => $userId]);
         }
 
         return $query->groupBy(['model', 'model_id'])
