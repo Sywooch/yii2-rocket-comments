@@ -15,6 +15,7 @@ use yii\web\IdentityInterface;
  * @property integer $id
  * @property integer $lft
  * @property integer $rgt
+ * @property integer $tree
  * @property integer $depth
  * @property integer $user_id
  * @property string $model
@@ -66,7 +67,7 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
-            [['lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active'], 'integer'],
+            [['lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active', 'tree'], 'integer'],
             [['text', 'admin_text'], 'string'],
             [['created_at'], 'safe'],
             [['model'], 'string', 'max' => 255],
@@ -82,6 +83,7 @@ class Comment extends \yii\db\ActiveRecord
             'id' => 'ID',
             'lft' => 'Lft',
             'rgt' => 'Rgt',
+            'tree' => 'Tree',
             'depth' => 'Depth',
             'user_id' => 'User ID',
             'model' => 'Model',
