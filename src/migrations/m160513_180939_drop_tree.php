@@ -11,5 +11,6 @@ class m160513_180939_drop_tree extends Migration
 
     public function down()
     {
+        return false;
     }
 }

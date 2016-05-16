@@ -13,7 +13,6 @@ use yii\web\IdentityInterface;
  * This is the model class for table "rf_comments".
  *
  * @property integer $id
- * @property integer $tree
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
@@ -39,7 +38,6 @@ class Comment extends \yii\db\ActiveRecord
         return [
             'tree' => [
                 'class' => NestedSetsBehavior::className(),
-                'treeAttribute' => 'tree'
             ],
         ];
     }
@@ -67,7 +65,7 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
-            [['tree', 'lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active'], 'integer'],
+            [['lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active'], 'integer'],
             [['text', 'admin_text'], 'string'],
             [['created_at'], 'safe'],
             [['model'], 'string', 'max' => 255],
@@ -81,7 +79,6 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tree' => 'Tree',
             'lft' => 'Lft',
             'rgt' => 'Rgt',
             'depth' => 'Depth',
