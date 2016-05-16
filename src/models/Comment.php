@@ -38,7 +38,7 @@ class Comment extends \yii\db\ActiveRecord
         return [
             'tree' => [
                 'class' => NestedSetsBehavior::className(),
-                'treeAttribute' => 'model'
+                'treeAttribute' => 'tree'
             ],
         ];
     }

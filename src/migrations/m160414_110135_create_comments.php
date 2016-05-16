@@ -9,7 +9,6 @@ class m160414_110135_create_comments extends Migration
     {
         $this->createTable('rf_comments', [
             'id' => $this->primaryKey(),
-            'tree' => Schema::TYPE_INTEGER . ' NOT NULL',
             'lft' => Schema::TYPE_INTEGER . ' NOT NULL',
             'rgt' => Schema::TYPE_INTEGER . ' NOT NULL',
             'depth' => Schema::TYPE_INTEGER . ' NOT NULL',
