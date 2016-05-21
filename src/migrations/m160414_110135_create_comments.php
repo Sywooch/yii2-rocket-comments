@@ -33,9 +33,5 @@ class m160414_110135_create_comments extends Migration
     public function down()
     {
         $this->dropTable('rf_comments');
-        $this->dropIndex('rf-model-comments', 'rf_comments');
-        $this->dropIndex('rf-user-comments', 'rf_comments');
-        $this->dropIndex('rf-user-comments', 'rf_comments');
-        $this->dropIndex('rf-user-comments', 'rf_comments');
     }
 }
