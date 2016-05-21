@@ -12,6 +12,7 @@ class m160414_110135_create_comments extends Migration
             'lft' => Schema::TYPE_INTEGER . ' NOT NULL',
             'rgt' => Schema::TYPE_INTEGER . ' NOT NULL',
             'depth' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'tree' => $this->integer()->notNull()->defaultValue(0),
             'user_id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'model' => Schema::TYPE_STRING . ' NOT NULL',
             'model_id' => Schema::TYPE_INTEGER . ' NOT NULL',
