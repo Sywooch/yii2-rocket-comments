@@ -5,5 +5,5 @@
 
 Prefferable way to install this package is through composer.
 ```
-composer install
+composer require rocketfirm/comments
 ```
