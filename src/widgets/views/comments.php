@@ -10,14 +10,14 @@
 <div class="reviews">
     <a id="comments"></a>
     <h3 class="content-title">
-        <?= Yii::t('frontend', 'Отзывы читателей') ?>
+        Отзывы читателей
         <span>
             (<?= $model->getCommentsCount() ?>)
         </span>
     </h3>
     <?php if (\Yii::$app->user->isGuest) : ?>
         <a class="reviews-login" href="<?= \yii\helpers\Url::to($loginUrl) ?>">
-            <?= Yii::t('frontend', 'Войти') ?>
+            Войти
             <svg class="icon icon--down">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-down"></use>
             </svg>
@@ -25,8 +25,8 @@
     <?php endif; ?>
 
      <select class="selectpicker" title="Сортировать по">
-         <option><?= Yii::t('frontend', 'дате') ?></option>
-         <option><?= Yii::t('frontend', 'рейтингу') ?></option>
+         <option>дате</option>
+         <option>рейтингу</option>
      </select>
 
     <div class="reviews-comment-section flex-760">
@@ -56,7 +56,7 @@
                 <div class="reviews-avatar"></div>
                 <?= $form->field($formModel, 'text')->input('text', [
                     'class' => 'reviews-comment-input',
-                    'placeholder' => \Yii::t('rf-comments', 'Ваш комментарий'),
+                    'placeholder' => 'Ваш комментарий',
                     'style' => 'width: 100%;',
                 ]) ?>
             </div>
@@ -101,7 +101,7 @@
 
         <?php if (empty($comments)) : ?>
             <div class="alert alert-info">
-                <?= Yii::t('frontend', 'Комментариев пока нет. Станьте первым, оставив свой!') ?>
+                Комментариев пока нет. Станьте первым, оставив свой!
             </div>
         <?php endif; ?>
     </div>
