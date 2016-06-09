@@ -285,6 +285,7 @@ class Comment extends \yii\db\ActiveRecord
 
         return $query->groupBy(['model', 'model_id'])
             ->limit($limit)
+            ->orderBy('created_at DESC')
             ->all();
     }
 }
