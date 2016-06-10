@@ -27,10 +27,14 @@ class CommentableBehavior extends Behavior
 
     public function deleteComments()
     {
-        return Comment::deleteAll([
+        $comments = Comment::find()->where([
             'model' => $this->owner->className(),
-            'model_id' => $this->owner->id
-        ]);
+            'model_id' => $this->owner->id,
+        ])->roots()->all();
+
+        foreach ($comments as $comment) {
+            $comment->deleteWithChildren();
+        }
     }
 
     public function getCommentsCount()
