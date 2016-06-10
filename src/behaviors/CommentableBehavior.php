@@ -18,6 +18,21 @@ class CommentableBehavior extends Behavior
     public $commentUrl;
     public $defaultActiveState = true;
 
+    public function events()
+    {
+        return [
+            \yii\db\ActiveRecord::EVENT_BEFORE_DELETE => 'deleteComments'
+        ];
+    }
+
+    public function deleteComments()
+    {
+        return Comment::deleteAll([
+            'model' => $this->owner->className(),
+            'model_id' => $this->owner->id
+        ]);
+    }
+
     public function getCommentsCount()
     {
         return Comment::find()
