@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8dda3d80c70650ccbab243abdf091f6c",
-    "content-hash": "70495047d1db32ca9999557a6d7b3411",
+    "hash": "750118fb879a5232808d87020069d7bb",
+    "content-hash": "808cd91ab92d47b036c571b8b162be0d",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -292,16 +292,16 @@
         },
         {
             "name": "naffiq/yii2-helpers",
-            "version": "v0.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/naffiq/yii2-helpers.git",
-                "reference": "19d67c8957a030e43115b11cb5341bba17a870cd"
+                "reference": "079ecb516d6d89eaec9e60d093442e4887773030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/naffiq/yii2-helpers/zipball/19d67c8957a030e43115b11cb5341bba17a870cd",
-                "reference": "19d67c8957a030e43115b11cb5341bba17a870cd",
+                "url": "https://api.github.com/repos/naffiq/yii2-helpers/zipball/079ecb516d6d89eaec9e60d093442e4887773030",
+                "reference": "079ecb516d6d89eaec9e60d093442e4887773030",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +327,7 @@
                 }
             ],
             "description": "Yii2 helpers",
-            "time": "2016-04-26 06:35:47"
+            "time": "2016-06-14 12:34:11"
         },
         {
             "name": "yiisoft/yii2",
@@ -1487,7 +1487,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "naffiq/yii2-helpers": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
