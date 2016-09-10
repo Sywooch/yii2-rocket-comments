@@ -1,6 +1,7 @@
 <?php
 
 namespace rocketfirm\comments\controllers;
+use rocketfirm\comments\models\Comment;
 use rocketfirm\comments\models\CommentForm;
 use rocketfirm\comments\widgets\AjaxCommentWidget;
 use yii\helpers\Url;
@@ -54,8 +55,20 @@ class ActionsController extends Controller
         return $redirectUrl;
     }
 
-    public function actionRate()
+    /**
+     * @param $id
+     * @param bool $upVote
+     */
+    public function actionRate($id, $upVote = true)
     {
+        /**
+         * @var $comment Comment
+         */
+        $comment = Comment::findOne(['id' => $id]);
+
+        if (\Yii::$app->user->isGuest) {
+            $comment->vote(\Yii::$app->user->id, $upVote);
+        }
 
     }
 }

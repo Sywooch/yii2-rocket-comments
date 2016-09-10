@@ -288,4 +288,20 @@ class Comment extends \yii\db\ActiveRecord
             ->orderBy('created_at DESC')
             ->all();
     }
+
+    /**
+     * @param $userId int
+     * @param $upVote bool
+     *
+     * @return int
+     */
+    public function vote($userId, $upVote = true)
+    {
+        $this->rating = CommentVotes::checkVote($userId, $this->id)
+            ->updateVote($upVote);
+
+        $this->save();
+
+        return $this->rating;
+    }
 }
