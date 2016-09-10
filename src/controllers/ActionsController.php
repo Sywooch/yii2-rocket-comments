@@ -56,8 +56,12 @@ class ActionsController extends Controller
     }
 
     /**
+     * Метод для оценки комментариев
+     *
      * @param $id
      * @param bool $upVote
+     *
+     * @return int
      */
     public function actionRate($id, $upVote = true)
     {
@@ -70,5 +74,6 @@ class ActionsController extends Controller
             $comment->vote(\Yii::$app->user->id, $upVote);
         }
 
+        return $comment->rating;
     }
 }
