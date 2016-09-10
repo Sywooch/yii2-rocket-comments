@@ -6,6 +6,7 @@ use rocketfirm\comments\models\CommentForm;
 use rocketfirm\comments\widgets\AjaxCommentWidget;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\web\Response;
 
 /**
  * Created by PhpStorm.
@@ -61,10 +62,12 @@ class ActionsController extends Controller
      * @param $id
      * @param bool $upVote
      *
-     * @return int
+     * @return array
      */
     public function actionRate($id, $upVote = true)
     {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
         /**
          * @var $comment Comment
          */
@@ -74,6 +77,6 @@ class ActionsController extends Controller
             $comment->vote(\Yii::$app->user->id, $upVote);
         }
 
-        return $comment->rating;
+        return ['id' => $comment->id, 'rating' => $comment->rating];
     }
 }
