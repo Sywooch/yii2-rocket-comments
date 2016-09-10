@@ -23,6 +23,11 @@ use yii\db\ActiveRecord;
  */
 class CommentVotes extends ActiveRecord
 {
+    public static function tableName()
+    {
+        return 'rf_comment_votes';
+    }
+
     /**
      * @inheritdoc
      */
