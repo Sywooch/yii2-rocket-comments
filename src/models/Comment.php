@@ -66,6 +66,7 @@ class Comment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id'], 'safe'],
             [['user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
             [['lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active', 'tree'], 'integer'],
             [['text', 'admin_text'], 'string'],
