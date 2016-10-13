@@ -8,3 +8,4 @@ themes/classic/views/
 /vendor/
 .DS_Store
 Thumbs.db
+tests/_output/*
