@@ -61,11 +61,10 @@ class CommentVotes extends ActiveRecord
 
     public function updateVote($upVote = true)
     {
-        $this->upvote = $upVote;
+        $this->upvote = $upVote ? 1 : 0;
         $this->save();
 
         $params = [
-            'user_id' => $this->user_id,
             'comment_id' => $this->comment_id,
         ];
 
