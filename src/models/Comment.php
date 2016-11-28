@@ -24,6 +24,7 @@ use yii\web\IdentityInterface;
  * @property string $text
  * @property string $created_at
  * @property string $admin_text
+ * @property integer $admin_id
  * @property integer $admin_rating
  * @property integer $is_active
  */
@@ -68,7 +69,7 @@ class Comment extends \yii\db\ActiveRecord
         return [
             [['id'], 'safe'],
             [['user_id', 'model', 'model_id', 'text', 'is_active'], 'required'],
-            [['lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active', 'tree'], 'integer'],
+            [['lft', 'rgt', 'depth', 'user_id', 'model_id', 'rating', 'admin_rating', 'is_active', 'tree', 'admin_id'], 'integer'],
             [['text', 'admin_text'], 'string'],
             [['created_at'], 'safe'],
             [['model'], 'string', 'max' => 255],
@@ -93,6 +94,7 @@ class Comment extends \yii\db\ActiveRecord
             'text' => 'Text',
             'created_at' => 'Created At',
             'admin_text' => 'Admin Text',
+            'admin_id' => 'Admin ID',
             'admin_rating' => 'Admin Rating',
             'is_active' => 'Is Active',
         ];
