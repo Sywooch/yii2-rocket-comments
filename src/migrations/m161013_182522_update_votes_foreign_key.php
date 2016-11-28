@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m160425_103122_create_rf_comment_votes extends Migration
+class m161013_182522_update_votes_foreign_key extends Migration
 {
     public function up()
     {
