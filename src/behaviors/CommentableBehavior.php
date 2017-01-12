@@ -17,6 +17,8 @@ class CommentableBehavior extends Behavior
     public $idField = 'id';
     public $commentUrl;
     public $defaultActiveState = true;
+    
+    public $commentClass = '\rocketfirm\comments\models\Comment';
 
     public function events()
     {
@@ -27,7 +29,8 @@ class CommentableBehavior extends Behavior
 
     public function deleteComments()
     {
-        $comments = Comment::find()->where([
+        $commentClass = $this->commentClass;
+        $comments = $commentClass::find()->where([
             'model' => $this->owner->className(),
             'model_id' => $this->owner->id,
         ])->roots()->all();
@@ -39,7 +42,8 @@ class CommentableBehavior extends Behavior
 
     public function getCommentsCount()
     {
-        return Comment::find()
+        $commentClass = $this->commentClass;
+        return $commentClass::find()
             ->where([
                 'model' => $this->owner->className(),
                 'model_id' => $this->owner->id
@@ -48,12 +52,13 @@ class CommentableBehavior extends Behavior
 
     public function comment($text, $parentComment = false)
     {
+        $commentClass = $this->commentClass;
         $params = [
             'text' => $text,
             'is_active' => $this->defaultActiveState,
         ];
 
-        return Comment::newComment($this->owner, $params, $parentComment);
+        return $commentClass::newComment($this->owner, $params, $parentComment);
     }
 
     public function getCommentUrl()
@@ -64,7 +69,8 @@ class CommentableBehavior extends Behavior
 
     public function getComments()
     {
-        return Comment::find()
+        $commentClass = $this->commentClass;
+        return $commentClass::find()
             ->where([
                 'model' => $this->owner->className(),
                 'model_id' => $this->owner->id,
