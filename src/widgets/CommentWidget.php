@@ -23,6 +23,11 @@ class CommentWidget extends Widget
 
     public $usernameField = 'username';
     public $avatarField = 'image';
+    
+    /**
+     * @var string A view file path to be rendered
+     */
+    public $viewFile = 'comments';
 
     public function init()
     {
@@ -50,6 +55,6 @@ class CommentWidget extends Widget
 
     public function run()
     {
-        return $this->render('comments', $this->params());
+        return $this->render($this-viewFile, $this->params());
     }
 }
