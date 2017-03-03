@@ -4,7 +4,7 @@
     "type": "yii2-extension",
     "require": {
         "yiisoft/yii2": "~2.0.0",
-        "naffiq/yii2-helpers": "^v0.0.2",
+        "naffiq/yii2-helpers": "^v0.0.3",
         "creocoder/yii2-nested-sets": "^0.9.0"
     },
     "require-dev": {
